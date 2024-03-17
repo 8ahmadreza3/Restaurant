@@ -103,6 +103,8 @@ public class FoodDelivery extends Application {
         Image[] images = new Image[5];
 
         for(int i=0 ; i<5 ; i++){
+            //TODO
+            // you should change this address to get image
             images[i] = new Image("file:D:/Code/Java/Photo/"+(i+1)+".jpg");
         }
 
@@ -174,13 +176,15 @@ public class FoodDelivery extends Application {
         });
         exitButton.setTranslateX(950);
         exitButton.setTranslateY(550);
-
+        //TODO
+        // you should change this address to get image
         ImageView im = new ImageView(new Image("file:D:/Code/Java/Photo/7.png"));
         im.setFitHeight(169);
         im.setFitWidth(169);
         im.setTranslateX(831);
         im.setTranslateY(0);
-
+        //TODO
+        // you should change this address to get image
         ImageView iv = new ImageView(new Image("file:D:/Code/Java/Photo/6.png"));
         iv.setFitHeight(270);
         iv.setFitWidth(820);
@@ -243,7 +247,8 @@ public class FoodDelivery extends Application {
             rect[i].setArcWidth(30);
             rect[i].setTranslateX(b);
             rect[i].setTranslateY(15);
-
+            //TODO
+            // you should change this address to get image
             imv[i] = new ImageView(new Image("D:/Code/Java/Photo/"+(i+9)+".jpg"));
             imv[i].setFitHeight(150);
             imv[i].setFitWidth(150);
@@ -304,7 +309,8 @@ public class FoodDelivery extends Application {
         rc.setArcWidth(30);
         rc.setTranslateX(50);
         rc.setTranslateY(200);
-
+        //TODO
+        // you should change this address to get image
         ImageView ima = new ImageView(new Image("file:D:/Code/Java/Photo/"+(x+11)+".jpg"));
         ima.setFitHeight(150);
         ima.setFitWidth(150);
