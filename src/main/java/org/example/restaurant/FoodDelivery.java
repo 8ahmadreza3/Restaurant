@@ -96,3 +96,110 @@ public class FoodDelivery extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    public void menuRestaurant(){
+
+        Button[] buttons = new Button[5];
+        Image[] images = new Image[5];
+
+        for(int i=0 ; i<5 ; i++){
+            images[i] = new Image("file:D:/Code/Java/Photo/"+(i+1)+".jpg");
+        }
+
+        for (int i=0 ; i<5  ; i++){
+            buttons[i] = new Button();
+            buttons[i].setGraphic(new ImageView(images[i]));
+            buttons[i].setPrefSize(125 , 125);
+        }
+
+        Label[] names = new Label[5];
+        Label[] info = new Label[5];
+        Label[] rates = new Label[5];
+        Rectangle[] rec = new Rectangle[5];
+
+        for (int i=0 , b=15 ; i<5 ; i++ , b+=165){
+
+            names[i] = new Label(res[i].getName());
+            info[i] = new Label("Address : ......\nNumber : ......");
+            rates[i] = new Label(res[i].getRate()+"*/5.0*");
+
+            rec[i] = new Rectangle(160 , 290 ,Color.WHITESMOKE);
+            rec[i].setArcHeight(30);
+            rec[i].setArcWidth(30);
+            rec[i].setTranslateX(b-10);
+            rec[i].setTranslateY(290);
+
+
+            names[i].setTranslateX(b+10);
+            info[i].setTranslateX(b+20);
+            rates[i].setTranslateX(b+50);
+
+            names[i].setTranslateY(450);
+            info[i].setTranslateY(490);
+            rates[i].setTranslateY(550);
+
+            names[i].setFont(Font.font("Tahoma" , FontPosture.ITALIC , 25));
+            info[i].setFont(Font.font("Tahoma", FontWeight.SEMI_BOLD , 12 ));
+            rates[i].setFont(Font.font("Tah" , FontPosture.REGULAR , 15));
+
+            if(res[i].getRate()>=4) {
+                rates[i].setTextFill(Color.GREEN);
+            }
+            else if (res[i].getRate()>=3) {
+                rates[i].setTextFill(Color.YELLOW);
+            }
+            else if (res[i].getRate()>=2) {
+                rates[i].setTextFill(Color.RED);
+            }
+            else {
+                rates[i].setTextFill(Color.GRAY);
+            }
+
+            buttons[i].setTranslateY(300);
+            buttons[i].setTranslateX(b);
+
+            int finalI = i;
+            buttons[i].setOnAction(e -> {
+                menuFoods(finalI);
+            });
+
+        }
+
+        Button exitButton = new Button("Exit");
+        exitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                loginForm();
+            }
+        });
+        exitButton.setTranslateX(950);
+        exitButton.setTranslateY(550);
+
+        ImageView im = new ImageView(new Image("file:D:/Code/Java/Photo/7.png"));
+        im.setFitHeight(169);
+        im.setFitWidth(169);
+        im.setTranslateX(831);
+        im.setTranslateY(0);
+
+        ImageView iv = new ImageView(new Image("file:D:/Code/Java/Photo/6.png"));
+        iv.setFitHeight(270);
+        iv.setFitWidth(820);
+        iv.setTranslateX(5);
+        iv.setTranslateY(15);
+
+        Label us = new Label( a.getUserName()+ " ,\nwelcome to our\nfood ordering \nplatform :)");
+        us.setTranslateX(840);
+        us.setTranslateY(200);
+        us.setFont(Font.font("Tahoma" , FontWeight.EXTRA_BOLD , 15));
+
+        Line l = new Line(830 , 0 , 830 ,600);
+
+        Button cart = new Button("Cart");
+        cart.setTranslateY(550);
+        cart.setTranslateX(840);
+        cart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                cartOrder();
+            }
+        });
