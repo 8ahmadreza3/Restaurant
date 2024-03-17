@@ -399,3 +399,141 @@ public class FoodDelivery extends Application {
             a.setNumber(Long.parseLong(phoneField.getText()));
             loginForm();
         });
+
+        Scene scene = new Scene(grid, 1000, 600);
+        BackgroundFill backgroundFill = new BackgroundFill(Color.ORANGE, null, null);
+        Background background = new Background(backgroundFill);
+        grid.setBackground(background);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
+    public void cartOrder(){
+
+        Group group = new Group();
+
+        Rectangle r = new Rectangle(550 , 570 , Color.ORANGERED);
+        r.setArcHeight(30);
+        r.setArcWidth(30);
+        r.setTranslateX(15);
+        r.setTranslateY(15);
+
+        Rectangle re = new Rectangle( 390 , 100 , Color.ORANGERED);
+        re.setArcHeight(30);
+        re.setArcWidth(30);
+        re.setTranslateX(580);
+        re.setTranslateY(15);
+
+        String foodsOrder = "List  :\n";
+        String priceOrder = "Price :\n";
+        String numberOrder = "Number:\n";
+        int total = 0 ;
+
+        for(int i=0 ; i< foods.length ; i++){
+            if(foods[i].getOrder()>0){
+                foodsOrder += "\n"+foods[i].getName() ;
+                numberOrder += "\n"+foods[i].getOrder() ;
+                priceOrder += "\n"+foods[i].getPrice() ;
+                total += foods[i].getPrice()*foods[i].getOrder();
+            }
+        }
+
+        Label foodsOr = new Label(foodsOrder);
+        foodsOr.setTranslateY(30);
+        foodsOr.setTranslateX(30);
+        foodsOr.setFont(Font.font("Ta" , FontWeight.BLACK , 16));
+        foodsOr.setTextFill(Color.GOLD);
+
+        Label numberOr = new Label(numberOrder);
+        numberOr.setTranslateY(30);
+        numberOr.setTranslateX(490);
+        numberOr.setFont(Font.font("Ta" , FontWeight.BLACK , 16));
+        numberOr.setTextFill(Color.GOLD);
+
+        Label priceOr = new Label(priceOrder);
+        priceOr.setTranslateY(30);
+        priceOr.setTranslateX(250);
+        priceOr.setFont(Font.font("Ta" , FontWeight.BLACK , 16));
+        priceOr.setTextFill(Color.GOLD);
+
+        Label totalOr = new Label("Total Amount :");
+        totalOr.setTranslateY(45);
+        totalOr.setTranslateX(585);
+        totalOr.setFont(Font.font("Ta" , FontWeight.BLACK , 23));
+        totalOr.setTextFill(Color.GOLD);
+
+        Label totalOrder = new Label("" +total);
+        totalOrder.setTranslateY(45);
+        totalOrder.setTranslateX(900);
+        totalOrder.setFont(Font.font("Ta" , FontWeight.BLACK , 23));
+        totalOrder.setTextFill(Color.GOLD);
+
+        Button pay = new Button("Pay!! :)");
+        pay.setTranslateX(850);
+        pay.setTranslateY(500);
+        pay.setPrefSize(80 , 30);
+        pay.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                payment();
+            }
+        });
+
+        Button back = new Button("Back :|");
+        back.setTranslateX(750);
+        back.setTranslateY(500);
+        back.setPrefSize(80 , 30);
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                menuRestaurant();
+            }
+        });
+
+        Button delete = new Button("Delete :(");
+        delete.setTranslateX(650);
+        delete.setTranslateY(500);
+        delete.setPrefSize(80 , 30);
+        delete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                for (Food food : foods) {
+                    food.setOrder(0);
+                }
+                cartOrder();
+            }
+        });
+
+        group.getChildren().addAll(r , re , foodsOr , numberOr , priceOr , totalOr , totalOrder
+                , pay , back , delete);
+
+        Scene scene = new Scene(group, 1000, 600);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+
+    }
+
+    public void payment(){
+
+        Label be = new Label("You don't need to pay, be my guest ;) ");
+        be.setTranslateY(250);
+        be.setTranslateX(250);
+        be.setTextFill(Color.WHITE);
+        be.setFont(Font.font("Ta" , FontPosture.ITALIC , 30));
+
+        Group group = new Group(be);
+        Scene scene = new Scene(group, 1000, 600 , Color.ORANGE);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage ;
+        signUp();
+    }
+}
