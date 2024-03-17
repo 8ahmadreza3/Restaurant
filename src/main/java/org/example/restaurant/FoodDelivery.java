@@ -203,3 +203,199 @@ public class FoodDelivery extends Application {
                 cartOrder();
             }
         });
+
+        Group group = new Group( rec );
+        group.getChildren().addAll( exitButton, l , im , iv , us , cart );
+        for(int i=0 ; i<5 ; i++){
+            group.getChildren().addAll( buttons[i] , names[i] , info[i] , rates[i] );
+        }
+
+        Scene scene = new Scene(group, 1000, 600 , Color.ORANGERED);
+
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+
+    }
+
+    public void menuFoods(int x){
+
+        Group group = new Group( );
+
+        Button backButton = new Button("Back->");
+        backButton.setTranslateY(20);
+        backButton.setTranslateX(940);
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                menuRestaurant();
+            }
+        });
+
+        Rectangle[] rect = new Rectangle[4];
+        ImageView[] imv = new ImageView[2];
+        Button[] but = new Button[4] ;
+        Label[] lab = new Label[4];
+
+        for(int i=0 , b=565 ; i<2 ; i++ , b+=200){
+            rect[i] = new Rectangle(170 , 570 , Color.ORANGERED);
+            rect[i].setArcHeight(30);
+            rect[i].setArcWidth(30);
+            rect[i].setTranslateX(b);
+            rect[i].setTranslateY(15);
+
+            imv[i] = new ImageView(new Image("D:/Code/Java/Photo/"+(i+9)+".jpg"));
+            imv[i].setFitHeight(150);
+            imv[i].setFitWidth(150);
+            imv[i].setTranslateX(b+10);
+            imv[i].setTranslateY(30);
+
+            but[i] = new Button("-");
+            but[i+2] = new Button("+");
+            but[i].setTranslateX(b+10);
+            but[i].setTranslateY(200);
+            but[i+2].setTranslateX(b+135);
+            but[i+2].setTranslateY(200);
+
+            lab[i] = new Label(foods[i+5].getName()+"  "+foods[i+5].getPrice()+"T");
+            lab[i].setTranslateX(b+35);
+            lab[i].setTranslateY(180);
+            lab[i].setFont(Font.font(15));
+
+            int finalI = i;
+            but[i].setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    foods[finalI+5].less();
+                    menuFoods(x);
+                }
+            });
+
+            but[i+2].setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    foods[finalI+5].plus();
+                    menuFoods(x);
+                }
+            });
+
+            lab[i+2] = new Label(foods[i+5].getOrder()+"");
+            lab[i+2].setTranslateX(b+80);
+            lab[i+2].setTranslateY(205);
+
+            rect[i+2] = new Rectangle(90 , 25 , Color.WHITE);
+            rect[i+2].setArcHeight(30);
+            rect[i+2].setArcWidth(30);
+            rect[i+2].setTranslateX(b+40);
+            rect[i+2].setTranslateY(200);
+
+            group.getChildren().addAll(rect[i] , imv[i] , but[i] , but[i+2] , lab[i] , rect[i+2] ,
+                    lab[i+2]);
+
+        }
+
+        Label lOrder = new Label(foods[x].getOrder()+"");
+        lOrder.setTranslateX(90);
+        lOrder.setTranslateY(205);
+
+
+        Rectangle rc = new Rectangle(90 , 25 , Color.WHITE);
+        rc.setArcHeight(30);
+        rc.setArcWidth(30);
+        rc.setTranslateX(50);
+        rc.setTranslateY(200);
+
+        ImageView ima = new ImageView(new Image("file:D:/Code/Java/Photo/"+(x+11)+".jpg"));
+        ima.setFitHeight(150);
+        ima.setFitWidth(150);
+        ima.setTranslateX(25);
+        ima.setTranslateY(30);
+
+        Rectangle r = new Rectangle(520 , 570 , Color.ORANGERED);
+        r.setArcHeight(30);
+        r.setArcWidth(30);
+        r.setTranslateX(15);
+        r.setTranslateY(15);
+
+        Button p = new Button("+");
+        Button m = new Button("-");
+        p.setTranslateX(150);
+        p.setTranslateY(200);
+        m.setTranslateX(25);
+        m.setTranslateY(200);
+
+        p.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                foods[x].plus();
+                menuFoods(x);
+            }
+        });
+        m.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                foods[x].less();
+                menuFoods(x);
+            }
+        });
+
+        Label label = new Label(foods[x].getName()+"  "+foods[x].getPrice()+"T");
+        label.setTranslateX(55);
+        label.setTranslateY(180);
+        label.setFont(Font.font(15));
+
+        Button cart = new Button("Cart->");
+        cart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                cartOrder();
+            }
+        });
+
+        cart.setTranslateX(940);
+        cart.setTranslateY(550);
+
+        group.getChildren().addAll(backButton , r , ima ,m , p , label , rc , lOrder , cart);
+
+        Scene scene = new Scene(group, 1000, 600);
+
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
+
+    public void signUp(){
+
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(5);
+        grid.setHgap(5);
+
+        Label nameLabel = new Label("Name:");
+        TextField nameField = new TextField();
+        GridPane.setConstraints(nameLabel, 0, 0);
+        GridPane.setConstraints(nameField, 1, 0);
+
+        Label phoneLabel = new Label("Number:");
+        TextField phoneField = new TextField();
+        GridPane.setConstraints(phoneLabel, 0, 1);
+        GridPane.setConstraints(phoneField, 1, 1);
+
+        Label passLabel = new Label("Password:");
+        TextField passField = new TextField();
+        GridPane.setConstraints(passLabel, 0, 2);
+        GridPane.setConstraints(passField, 1, 2);
+
+        Button signupButton = new Button("SignUp");
+        GridPane.setConstraints(signupButton, 1, 4);
+
+        grid.getChildren().addAll(nameLabel, nameField, phoneLabel, phoneField, passLabel,
+                passField, signupButton );
+
+        signupButton.setOnAction(e -> {
+            a.setUserName(nameField.getText());
+            a.setPassword(passField.getText());
+            a.setNumber(Long.parseLong(phoneField.getText()));
+            loginForm();
+        });
