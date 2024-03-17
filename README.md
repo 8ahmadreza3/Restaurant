@@ -2,6 +2,5 @@
 
 **Gradle JavaFX**
 
-</br>
-application review:
+app review:
 ![Review GIF](./review.gif)
