@@ -22,19 +22,15 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 public class FoodDelivery extends Application {
-
     private Stage primaryStage;
     User a = new User("AhmadReza" , "1");
 
     static Restaurant[] res = {new Restaurant("ShabChehre") ,new Restaurant(" DelGosha") ,
             new Restaurant("Bakhtiyary") ,new Restaurant(" AmoJoon") ,new Restaurant("    110") ,};
-
     static Food[] foods = {new Food(" Kebab" , 150) , new Food(" Joojeh", 125 ),
             new Food("Shishlik" , 175) , new Food("  Pitza" , 100), new Food(" Berger"
             , 75) , new Food("  Sallad" , 20) , new Food("Noshabe" , 10)};
-
 
     public static void main(String[] args) {
         for (int i=0 ; i<5 ; i++){
@@ -120,7 +116,6 @@ public class FoodDelivery extends Application {
         Rectangle[] rec = new Rectangle[5];
 
         for (int i=0 , b=15 ; i<5 ; i++ , b+=165){
-
             names[i] = new Label(res[i].getName());
             info[i] = new Label("Address : ......\nNumber : ......");
             rates[i] = new Label(res[i].getRate()+"*/5.0*");
@@ -130,7 +125,6 @@ public class FoodDelivery extends Application {
             rec[i].setArcWidth(30);
             rec[i].setTranslateX(b-10);
             rec[i].setTranslateY(290);
-
 
             names[i].setTranslateX(b+10);
             info[i].setTranslateX(b+20);
@@ -164,7 +158,6 @@ public class FoodDelivery extends Application {
             buttons[i].setOnAction(e -> {
                 menuFoods(finalI);
             });
-
         }
 
         Button exitButton = new Button("Exit");
@@ -219,11 +212,9 @@ public class FoodDelivery extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 
     public void menuFoods(int x){
-
         Group group = new Group( );
 
         Button backButton = new Button("Back->");
@@ -296,13 +287,11 @@ public class FoodDelivery extends Application {
 
             group.getChildren().addAll(rect[i] , imv[i] , but[i] , but[i+2] , lab[i] , rect[i+2] ,
                     lab[i+2]);
-
         }
 
         Label lOrder = new Label(foods[x].getOrder()+"");
         lOrder.setTranslateX(90);
         lOrder.setTranslateY(205);
-
 
         Rectangle rc = new Rectangle(90 , 25 , Color.WHITE);
         rc.setArcHeight(30);
@@ -371,7 +360,6 @@ public class FoodDelivery extends Application {
     }
 
     public void signUp(){
-
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setPadding(new Insets(10, 10, 10, 10));
@@ -413,11 +401,9 @@ public class FoodDelivery extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
     public void cartOrder(){
-
         Group group = new Group();
 
         Rectangle r = new Rectangle(550 , 570 , Color.ORANGERED);
@@ -519,11 +505,9 @@ public class FoodDelivery extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 
     public void payment(){
-
         Label be = new Label("You don't need to pay, be my guest ;) ");
         be.setTranslateY(250);
         be.setTranslateX(250);
